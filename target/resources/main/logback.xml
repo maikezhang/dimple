@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true" scan="false" scanPeriod="30 seconds">
+    <contextName>dimple</contextName>
+    <conversionRule conversionWord="ipAddr" converterClass="com.maike.dimple.common.IpAddrConverter"/>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %cn[%ipAddr] %-5p %m [%t] %c.%M\(%L\)%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="SERVICE-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/service.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %cn[%ipAddr] %-5p %m [%t] %c.%M\(%L\)
+                %n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/service.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+
+    <logger level="info" name="com.maike" additivity="false">
+        <appender-ref ref="SERVICE-OUT"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+

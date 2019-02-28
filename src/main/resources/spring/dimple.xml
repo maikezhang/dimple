@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd"
+       default-lazy-init="false">
+
+    <task:annotation-driven/>
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.maike"/>
+    <import resource="mybatis.xml"/>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <bean class="com.maike.dimple.zookeeper.ZKDistributedLock" init-method="init">
+        <property name="ZK_URL" value="127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181"/>
+        <property name="sleepTimeMs" value="1000"/>
+        <property name="maxRetries" value="3"/>
+        <property name="lockName" value="demo"/>
+    </bean>
+
+
+    <bean id="nacosConfiguration" class="com.maike.dimple.nacos.Configuration"/>
+
+
+    <!--<import resource="nacos.xml"/>-->
+
+
+</beans>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maike.dimple.mapper.AdminMapper">
+
+<select id="get" parameterType="java.lang.Long" resultType="com.maike.dimple.pojos.Admin">
+    select id,username,real_name realName,mobile from admin where id=#{id}
+</select>
+
+</mapper>

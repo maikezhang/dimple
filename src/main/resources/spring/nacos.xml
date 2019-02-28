@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:nacos="http://nacos.io/schema/nacos"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://nacos.io/schema/nacos
+        http://nacos.io/schema/nacos.xsd">
+
+    <nacos:annotation-driven/>
+
+
+    <nacos:global-properties server-addr="94.191.28.57:8848"/>
+
+
+
+    <nacos:property-source data-id="maike" group-id="DEFAULT_GROUP" auto-refreshed="true"/>
+
+    <nacos:property-source data-id="redis-live" group-id="redis" auto-refreshed="true"/>
+
+
+</beans>
